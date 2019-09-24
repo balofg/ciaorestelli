@@ -23,5 +23,11 @@ module.exports = {
   getPageAccessToken: (pageId, accessToken) =>
     axios.get(
       buildUrl(pageId, { fields: "access_token", access_token: accessToken })
-    )
+    ),
+  listPages: accessToken =>
+    axios.get(buildUrl("/me/accounts", { access_token: accessToken })),
+  postToPage: (pageId, message, pageToken) =>
+    axios.post(buildUrl(`${pageId}/feed`, { access_token: pageToken }), {
+      message
+    })
 };
