@@ -1,4 +1,4 @@
-const axios = require("axios");
+const { default: axios } = require("axios");
 
 const buildUrl = (endpoint, queryStringParams = {}) => {
   const url = new URL(endpoint, "https://graph.facebook.com/v4.0");

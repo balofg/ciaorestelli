@@ -22,13 +22,15 @@ exports.handler = async event => {
         event.queryStringParameters.code
       );
 
-      if (!accessTokenResponse || !accessTokenResponse.access_token) {
+      if (!accessTokenResponse.data) {
+        console.error(JSON.stringify(accessTokenResponse));
+
         return {
           statusCode: 500
         };
       }
 
-      await dynamo.updateSetting("userToken", accessTokenResponse.access_token);
+      await dynamo.updateSetting("userToken", accessTokenResponse.data.access_token);
 
       return {
         statusCode: 204
