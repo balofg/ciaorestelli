@@ -9,7 +9,8 @@ module.exports = [
       filename: "auth.js",
       libraryTarget: "umd"
     },
-    target: "node"
+    target: "node",
+    externals: ["aws-sdk"]
   },
   {
     entry: "./src/lambdas/post/index.js",
@@ -19,6 +20,7 @@ module.exports = [
       filename: "post.js",
       libraryTarget: "umd"
     },
-    target: "node"
+    target: "node",
+    externals: ["aws-sdk"]
   }
 ];
