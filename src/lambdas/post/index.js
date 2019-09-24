@@ -45,6 +45,7 @@ module.exports = {
     const message = `${person.name} ${person.surname} non saluta Restelli.`;
 
     await fb.postToPage(page.id, message, pageToken);
+    
     // success
     console.info(message);
   }
