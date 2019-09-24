@@ -30,7 +30,10 @@ exports.handler = async event => {
         };
       }
 
-      await dynamo.updateSetting("userToken", accessTokenResponse.data.access_token);
+      await dynamo.updateSetting(
+        dynamo.settings.USER_TOKEN,
+        accessTokenResponse.data.access_token
+      );
 
       return {
         statusCode: 204
