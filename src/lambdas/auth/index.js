@@ -7,7 +7,7 @@ exports.handler = async event => {
       return {
         statusCode: 301,
         headers: {
-          Location: `https://www.facebook.com/v4.0/dialog/oauth?client_id=${process.env.client_id}&state=appstate123&scope=manage_pages,publish_pages&redirect_uri=${process.env.redirect_uri}`
+          Location: `https://www.facebook.com/v4.0/dialog/oauth?client_id=${process.env.client_id}&state=appstate123&scope[]=manage_pages&scope[]=publish_pages&redirect_uri=${process.env.redirect_uri}`
         }
       };
     }
