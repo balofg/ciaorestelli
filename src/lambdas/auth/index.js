@@ -12,13 +12,15 @@ exports.handler = async event => {
       };
     }
     case "callback": {
-      if (!event.queryStringParams || !event.queryStringParams.code) {
+      if (!event.queryStringParameters || !event.queryStringParameters.code) {
         return {
           statusCode: 400
         };
       }
 
-      const accessTokenResponse = await fb.getUserAccessToken(code);
+      const accessTokenResponse = await fb.getUserAccessToken(
+        event.queryStringParameters.code
+      );
 
       if (!accessTokenResponse || !accessTokenResponse.access_token) {
         return {
