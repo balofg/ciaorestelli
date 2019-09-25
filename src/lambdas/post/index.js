@@ -44,9 +44,11 @@ module.exports = {
     const person = randomPersonResponse.data;
     const message = `${person.name} ${person.surname} non saluta Restelli.`;
 
-    await fb.postToPage(page.id, message, pageToken);
-    
+    const postResult = await fb.postToPage(page.id, message, pageToken);
+
     // success
-    console.info(message);
+    console.info(postResult, message);
+
+    return postResult;
   }
 };
