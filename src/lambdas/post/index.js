@@ -49,6 +49,6 @@ module.exports = {
     // success
     console.info(postResult, message);
 
-    return postResult;
+    return postResult.data;
   }
 };
