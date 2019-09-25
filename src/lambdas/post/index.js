@@ -47,7 +47,7 @@ module.exports = {
     const postResult = await fb.postToPage(page.id, message, pageToken);
 
     // success
-    console.info(postResult, message);
+    console.info(postResult.data, message);
 
     return postResult.data;
   }
