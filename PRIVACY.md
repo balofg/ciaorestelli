@@ -1,0 +1,4 @@
+# Page Post Generator Privacy Statement
+
+Page Post Generator is a tool meant to be used exclusively by the author.
+No information about any other user is used or retained in any way.
