@@ -20,6 +20,13 @@ module.exports = {
         code
       })
     ),
+  debugToken: userToken =>
+    axios.get(
+      buildUrl("debug_token", {
+        input_token: userToken,
+        access_token: `${process.env.client_id}|${process.env.client_secret}`
+      })
+    ),
   getPageAccessToken: (pageId, accessToken) =>
     axios.get(
       buildUrl(pageId, { fields: "access_token", access_token: accessToken })

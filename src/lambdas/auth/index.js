@@ -14,7 +14,8 @@ exports.handler = async event => {
     case "callback": {
       if (!event.queryStringParameters || !event.queryStringParameters.code) {
         return {
-          statusCode: 400
+          statusCode: 400,
+          body: "What do you think you're doing?"
         };
       }
 
@@ -23,10 +24,33 @@ exports.handler = async event => {
       );
 
       if (!accessTokenResponse.data) {
-        console.error(JSON.stringify(accessTokenResponse));
+        console.error("access token error", accessTokenResponse);
 
         return {
-          statusCode: 500
+          statusCode: 500,
+          body: "There was an error getting the Access Token from Facebook."
+        };
+      }
+
+      const debugTokenResponse = await fb.debugToken(
+        accessTokenResponse.data.access_token
+      );
+
+      if (!debugTokenResponse.data) {
+        console.error("debug token error", debugTokenResponse);
+
+        return {
+          statusCode: 500,
+          body: "There was an error getting the Debug Token from Facebook."
+        };
+      }
+
+      if (debugTokenResponse.data.data.user_id !== process.env.user_id) {
+        console.error("user not allowed");
+
+        return {
+          statusCode: 403,
+          body: "Go away or I'll call the police."
         };
       }
 
@@ -42,7 +66,8 @@ exports.handler = async event => {
     }
     case "default": {
       return {
-        statusCode: 400
+        statusCode: 400,
+        body: "What do you think you're doing?"
       };
     }
   }
